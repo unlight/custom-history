@@ -8,7 +8,7 @@ const Search = (props) => <p>Search {JSON.stringify(props)}</p>;
 
 const App = () => <main>
     <div>
-        | <Link href="/home">link home</Link> |
+        | <Link href="/">link home</Link> |
         | <a href="#/home">home</a> |
         | <a href="#/about">about</a> |
         | <a href="#/search/query?x=1">search</a> |

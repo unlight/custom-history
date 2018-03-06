@@ -1,9 +1,5 @@
 import { CustomHistory, Location } from 'preact-router';
 
-export function createHashHistory(): CustomHistory {
-    return new HashHistory(window);
-}
-
 export class HashHistory implements CustomHistory {
 
     constructor(private window: Window) { }
@@ -30,4 +26,8 @@ export class HashHistory implements CustomHistory {
     replace(url: string): void {
         this.window.history.replaceState(null, null, `#${url}`);
     }
+}
+
+export function createHashHistory(): CustomHistory {
+    return new HashHistory(window);
 }
