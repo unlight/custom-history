@@ -36,3 +36,6 @@ render(<App />, document.body);
 
 ## CHANGELOG
 See [CHANGELOG](CHANGELOG.md)
+
+## TODO
+* Move to jest, ts-jest
