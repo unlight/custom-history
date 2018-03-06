@@ -1,0 +1,94 @@
+{
+  "name": "custom-history",
+  "version": "0.0.0",
+  "license": "MIT",
+  "description": "Custom hash history implemenation for preact",
+  "main": "lib/index.js",
+  "typings": "src/index.ts",
+  "scripts": {
+    "t": "npm run mocha -- src/*.spec.ts",
+    "test": "npm run eslint && npm run tscheck && npm run t",
+    "test:r": "npm run mocha -- src/*.spec.ts",
+    "mocha": "node -r ts-node/register node_modules/mocha/bin/_mocha",
+    "test:w": "npm run mocha -- --watch-extensions ts --watch src/**/*.spec.ts",
+    "test:d": "node --inspect-brk -r ts-node/register node_modules/mocha/bin/_mocha --no-timeouts src/**/*.spec.ts",
+    "tscheck": "echo tscheck... && tsc --noEmit",
+    "tscheck:w": "npm run tscheck -- --watch",
+    "tsclint": "tsc --noEmit --pretty false --strictNullChecks --forceConsistentCasingInFileNames --noImplicitReturns --noImplicitThis --noUnusedLocals --noUnusedParameters",
+    "tsclint:w": "npm run tsclint -- --watch",
+    "eslint": "eslint src --ext ts",
+    "eslint:fix": "eslint src --ext \"ts\" --fix",
+    "eslint:w": "chokidar \"src/**/*.ts\" --initial -c \"npm run eslint\"",
+    "lint:w": "concurrently -- \"npm run tsclint:w\" \"npm run eslint:w\"",
+    "semantic-release": "semantic-release",
+    "prepublishOnly": "npm run build",
+    "build": "tsc",
+    "prebuild": "npm run clean",
+    "clean": "rimraf lib",
+    "setup": "npm i -g commitizen semantic-release-cli",
+    "commit": "git-cz"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@semantic-release/changelog": "1.0.1",
+    "@semantic-release/git": "3.0.1",
+    "@semantic-release/npm": "3.0.2",
+    "@types/mocha": "2.2.48",
+    "@types/node": "9.4.6",
+    "chokidar-cli": "1.2.0",
+    "concurrently": "3.5.1",
+    "cz-conventional-changelog": "2.1.0",
+    "eslint": "4.18.2",
+    "eslint-plugin-import": "2.9.0",
+    "eslint-plugin-tslint": "2.1.0",
+    "eslint-plugin-typescript": "0.9.0",
+    "eslint-plugin-unicorn": "4.0.2",
+    "mocha": "5.0.1",
+    "preact": "8.2.7",
+    "preact-router": "2.6.0",
+    "rimraf": "2.6.2",
+    "semantic-release": "12.4.1",
+    "ts-node": "5.0.1",
+    "tslint": "5.9.1",
+    "typescript": "2.7.2",
+    "typescript-eslint-parser": "14.0.0"
+  },
+  "release": {
+    "verifyConditions": [
+      "@semantic-release/changelog",
+      "@semantic-release/npm",
+      "@semantic-release/git"
+    ],
+    "prepare": [
+      {
+        "path": "@semantic-release/changelog",
+        "changelogFile": "CHANGELOG.md"
+      },
+      "@semantic-release/npm",
+      "@semantic-release/git"
+    ],
+    "publish": [
+      "@semantic-release/npm"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/unlight/custom-history.git"
+  },
+  "keywords": [
+    "preact",
+    "create-history",
+    "history",
+    "hash-history",
+    "create-hash-history"
+  ],
+  "bugs": {
+    "url": "https://github.com/unlight/custom-history/issues"
+  },
+  "homepage": "https://github.com/unlight/custom-history#readme"
+}

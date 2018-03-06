@@ -1,2 +1,2 @@
 # custom-history
-Tiny hash history implemenation for preact
+Custom hash history implemenation for preact
