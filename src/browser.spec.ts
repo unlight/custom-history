@@ -1,13 +1,13 @@
 import { spawn, ChildProcess } from 'child_process';
 import * as assert from 'assert';
-const Nightmare = require('nightmare');
+import Nightmare = require('nightmare');
 
 describe('browser', function() {
 
     this.timeout('8s');
 
     let serverProc: ChildProcess;
-    let nightmare: any;
+    let nightmare: Nightmare;
 
     before(done => {
         serverProc = spawn('node', ['node_modules/webpack-dev-server/bin/webpack-dev-server.js']);
@@ -23,11 +23,11 @@ describe('browser', function() {
     });
 
     beforeEach(() => {
-        nightmare = Nightmare().goto('http://localhost:8080');
+        nightmare = new Nightmare().goto('http://localhost:8080');
     });
 
     it('about', async () => {
-        const body: string = await nightmare
+        const body = await nightmare
             .click('a[href="#/about"]')
             .evaluate(() => document.body.innerHTML)
             .end();
@@ -35,7 +35,7 @@ describe('browser', function() {
     });
 
     it('link home', async () => {
-        const body: string = await nightmare
+        const body = await nightmare
             .click('a[href="/"]')
             .evaluate(() => document.body.innerHTML)
             .end();
