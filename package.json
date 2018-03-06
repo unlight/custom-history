@@ -44,7 +44,7 @@
     "eslint-plugin-tslint": "2.1.0",
     "eslint-plugin-typescript": "0.9.0",
     "eslint-plugin-unicorn": "4.0.2",
-    "mocha": "5.0.1",
+    "mocha": "5.0.2",
     "nightmare": "3.0.0",
     "preact": "8.2.7",
     "preact-router": "2.6.0",
