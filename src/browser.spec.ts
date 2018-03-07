@@ -2,14 +2,12 @@ import { spawn, ChildProcess } from 'child_process';
 import * as assert from 'assert';
 import Nightmare = require('nightmare');
 
-describe('browser', function() {
-
-    this.timeout('8s');
+describe('browser', () => {
 
     let serverProc: ChildProcess;
     let nightmare: Nightmare;
 
-    before(done => {
+    beforeAll(done => {
         serverProc = spawn('node', ['node_modules/webpack-dev-server/bin/webpack-dev-server.js']);
         serverProc.stdout.on('data', (data) => {
             if (data.toString().indexOf('Compiled successfully.') !== -1) {
@@ -18,7 +16,7 @@ describe('browser', function() {
         });
     });
 
-    after(() => {
+    afterAll(() => {
         serverProc.kill();
     });
 

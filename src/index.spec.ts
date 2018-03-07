@@ -7,20 +7,20 @@ describe('custom-history:', () => {
 
     beforeEach(() => {
         window = {
-            addEventListener: jasmine.createSpy('addEventListener'),
-            removeEventListener: jasmine.createSpy('removeEventListener'),
+            addEventListener: jest.fn(),
+            removeEventListener: jest.fn(),
             location: { hash: '' },
-            history: jasmine.createSpyObj('history', ['pushState', 'replaceState'])
+            history: ['pushState', 'replaceState'].reduce((result, name) => (result[name] = jest.fn().mockName(name), result), {}),
         };
         history = new HashHistory(window);
     });
 
     it('listen', () => {
         const removeListen = history.listen(() => null);
-        expect(removeListen).toEqual(jasmine.any(Function));
-        expect(window.addEventListener).toHaveBeenCalledWith('hashchange', jasmine.any(Function), false);
+        expect(removeListen).toEqual(expect.any(Function));
+        expect(window.addEventListener).toHaveBeenCalledWith('hashchange', expect.any(Function), false);
         removeListen();
-        expect(window.removeEventListener).toHaveBeenCalledWith('hashchange', jasmine.any(Function));
+        expect(window.removeEventListener).toHaveBeenCalledWith('hashchange', expect.any(Function));
     });
 
     it('location', () => {
