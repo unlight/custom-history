@@ -25,13 +25,13 @@
     "build": "tsc --module umd",
     "prebuild": "npm run clean",
     "clean": "rimraf lib",
-    "setup": "npm i -g commitizen semantic-release-cli",
     "commit": "git-cz"
   },
   "dependencies": {},
   "devDependencies": {
-    "@semantic-release/changelog": "1.0.1",
+    "@semantic-release/changelog": "2.0.0",
     "@semantic-release/git": "3.0.1",
+    "@semantic-release/github": "4.0.3",
     "@semantic-release/npm": "3.0.2",
     "@types/jest": "22.2.0",
     "@types/nightmare": "2.10.2",
@@ -48,7 +48,7 @@
     "preact": "8.2.7",
     "preact-router": "2.6.0",
     "rimraf": "2.6.2",
-    "semantic-release": "12.4.1",
+    "semantic-release": "15.0.0",
     "ts-jest": "22.4.1",
     "ts-loader": "4.0.1",
     "ts-node": "5.0.1",
@@ -63,19 +63,23 @@
   "release": {
     "verifyConditions": [
       "@semantic-release/changelog",
+      "@semantic-release/github",
       "@semantic-release/npm",
       "@semantic-release/git"
     ],
     "prepare": [
-      {
-        "path": "@semantic-release/changelog",
-        "changelogFile": "CHANGELOG.md"
-      },
-      "@semantic-release/npm",
-      "@semantic-release/git"
+      "@semantic-release/changelog",
+      "@semantic-release/npm"
     ],
     "publish": [
-      "@semantic-release/npm"
+      "@semantic-release/npm",
+      "@semantic-release/github"
+    ],
+    "success": [
+      "@semantic-release/github"
+    ],
+    "fail": [
+      "@semantic-release/github"
     ]
   },
   "config": {
