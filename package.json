@@ -7,7 +7,7 @@
   "typings": "src/index.ts",
   "scripts": {
     "dev": "webpack-dev-server",
-    "test": "npm run eslint && npm run tscheck && npm run t",
+    "test": "npm run eslint && npm run tscheck && npm run test:r",
     "test:r": "jest",
     "test:coverage": "jest --collectCoverage",
     "test:w": "jest --watch",
