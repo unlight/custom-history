@@ -8,6 +8,7 @@ describe('browser', () => {
     let nightmare: Nightmare;
 
     beforeAll(done => {
+        jest.setTimeout(15 * 1000);
         serverProc = spawn('node', ['node_modules/webpack-dev-server/bin/webpack-dev-server.js']);
         serverProc.stdout.on('data', (data) => {
             if (data.toString().indexOf('Compiled successfully.') !== -1) {
