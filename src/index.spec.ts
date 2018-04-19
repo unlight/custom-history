@@ -1,4 +1,5 @@
 import { HashHistory } from './index';
+import { createSpyObj } from 'jest-createspyobj';
 
 describe('custom-history:', () => {
 
@@ -10,7 +11,7 @@ describe('custom-history:', () => {
             addEventListener: jest.fn(),
             removeEventListener: jest.fn(),
             location: { hash: '' },
-            history: ['pushState', 'replaceState'].reduce((result, name) => (result[name] = jest.fn().mockName(name), result), {}),
+            history: createSpyObj('history', ['pushState', 'replaceState'])
         };
         history = new HashHistory(window);
     });
